@@ -1,0 +1,29 @@
+--- Makefile.orig	2022-10-10 11:07:46.523229156 +0200
++++ Makefile	2022-10-10 12:00:26.762401945 +0200
+@@ -6,7 +6,7 @@
+ ifeq ($(OS),Windows_NT)
+ CONFFILE=%SystemDrive%\ProgramData\MaxMind\GeoIPUpdate\GeoIP.conf
+ else
+-CONFFILE=/usr/local/etc/GeoIP.conf
++CONFFILE=/etc/GeoIP.conf
+ endif
+ endif
+ 
+@@ -14,7 +14,7 @@
+ ifeq ($(OS),Windows_NT)
+ DATADIR=%SystemDrive%\ProgramData\MaxMind\GeoIPUpdate\GeoIP
+ else
+-DATADIR=/usr/local/share/GeoIP
++DATADIR=/usr/share/GeoIP
+ endif
+ endif
+ 
+@@ -41,7 +41,7 @@
+ 	mkdir -p $(BUILDDIR)
+ 
+ $(BUILDDIR)/geoipupdate: $(BUILDDIR)
+-	(cd cmd/geoipupdate && go build -ldflags '-X main.defaultConfigFile=$(CONFFILE) -X main.defaultDatabaseDirectory=$(DATADIR) -X "main.version=$(VERSION)"')
++	(cd cmd/geoipupdate && go build -buildmode=pie -ldflags '-X main.defaultConfigFile=$(CONFFILE) -X main.defaultDatabaseDirectory=$(DATADIR) -X "main.version=$(VERSION)"')
+ 	cp cmd/geoipupdate/geoipupdate $(BUILDDIR)
+ 
+ $(BUILDDIR)/GeoIP.conf: $(BUILDDIR) conf/GeoIP.conf.default
