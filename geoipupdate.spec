@@ -1,5 +1,5 @@
 Name:           geoipupdate
-Version:        6.0.0
+Version:        6.1.0
 Release:        1%{?dist}
 Summary:        GeoIP update client code
 
@@ -55,6 +55,9 @@ mkdir -p %{buildroot}/usr/share/GeoIP
 
 
 %changelog
+* Sat Feb 3 2024 Lukas Hajn <lhajn@redhat.com> - 6.1.0-1
+- bump version to v6.1.0
+
 * Mon Nov 20 2023 Lukas Hajn <lhajn@redhat.com> - 6.0.0-1
 - upgrade to v6.0.0
 
